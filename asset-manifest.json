@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/iok2022_gh_pages/static/css/main.7a28f3e0.css",
+    "main.js": "/iok2022_gh_pages/static/js/main.4eb54d5c.js",
+    "static/media/welcome-img.png": "/iok2022_gh_pages/static/media/welcome-img.2281f89b2d318a4342f9.png",
+    "static/media/welcome-img-mobile.png": "/iok2022_gh_pages/static/media/welcome-img-mobile.5e277ddea7ec39c3e6a4.png",
+    "static/media/http-logo.png": "/iok2022_gh_pages/static/media/http-logo.9e3bd5bb857ca67c7ea6.png",
+    "index.html": "/iok2022_gh_pages/index.html",
+    "main.7a28f3e0.css.map": "/iok2022_gh_pages/static/css/main.7a28f3e0.css.map",
+    "main.4eb54d5c.js.map": "/iok2022_gh_pages/static/js/main.4eb54d5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a28f3e0.css",
+    "static/js/main.4eb54d5c.js"
+  ]
+}
