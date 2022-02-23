@@ -8,9 +8,12 @@ import Networking from "../../icons/Networking"
 import Star from "../../icons/Star"
 import Tools from "../../icons/Tools"
 import { StructuredText  } from "react-datocms"
+import { useStaticElement } from '../../tools/datoCmsTools'
 
-const Info = (props) => {
-	const{ infoText1, infoText2 } = props
+const Info = () => {
+	const [infoText1] = useStaticElement("info1") 
+	const [infoText2] = useStaticElement("info2") 
+	
 	return <Section container placeholder id="info-section">
 		<Title>Legyünk ismét <span className="highlight">EGYÜTT</span>!</Title>
 		<Text subtitle><StructuredText data={infoText1}/></Text>

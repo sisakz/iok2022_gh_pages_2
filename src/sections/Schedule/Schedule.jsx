@@ -5,7 +5,7 @@ import Title from "../../components/Title/Title";
 import Clock from "../../icons/Clock";
 import Coffee from "../../icons/Coffee";
 import "./Schedule.scss";
-import { useQuerySubscription } from "react-datocms";
+import { useAllElements } from '../../tools/datoCmsTools'
 
 /* Egy napirendi pont komponense */
 const ScheduleItem = (props) => {
@@ -226,7 +226,7 @@ const BreakoutSessionsSchedule = (props) => {
 
 /* Teljes napirend komponense */
 const Schedule = (props) => {
-    const { allStages } = props
+    const [allStages] = useAllElements("stages")
     const [openedScheduleItem, setOpenedScheduleItem] = useState(null);
     
     return (

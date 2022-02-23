@@ -3,15 +3,18 @@ import "./Map.scss"
 import Title from "../../components/Title/Title"
 import Text from "../../components/Text/Text"
 import map from "../../assets/img/map.png"
+import { useStaticElement } from '../../tools/datoCmsTools'
+import { StructuredText  } from "react-datocms"
 
 
 const Map = () => {
+	const [mapText1] = useStaticElement("map1") 
+	const [mapText2] = useStaticElement("map2") 
 	return <Section id="helyszin" container placeholder>
 		<Title>Konferencia <span className="highlight">HELYSZÍN</span></Title>
-		<Text description>Válaszd meg, hogy a helyszínen szeretnéd-e követni az IOK 2022 szakmai programját vagy inkább az otthonod kényelméből, online kapcsolódva!
-		A konferencia helyszínén sajnos legfeljebb 150 vendéget tudunk személyesen fogadni, de szerencsére az online konferenciatér befogadóképessége korlátlan. Ha a személyes résztvevők között vagy, akkor ide várunk:</Text>
+		<Text description><StructuredText data={mapText1}></StructuredText></Text>
 		<img className="map" src={map} alt="Térkép" />
-		<Text description>Magyar Telekom Székház Konferenciaközpont - 1097 Budapest, Könyves Kálmán krt. 36.</Text>
+		<Text description><StructuredText data={mapText2}></StructuredText></Text>
 	</Section>
 }
 

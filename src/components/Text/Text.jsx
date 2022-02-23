@@ -1,7 +1,10 @@
 import './Text.scss'
 
 const Text = (props) => {
-	return <p className={`text ${props.center && 'center'} ${props.subtitle && 'subtitle'} ${props.description && 'description'}`}>{props.children}</p>
+	const center = (props?.center) ? " center" : ""
+	const subtitle = (props?.subtitle) ? " subtitle" : ""
+	const description = (props?.description) ? " description" : ""
+	return <div className={`text${center}${subtitle}${description}`}>{props.children}</div>
 }
 
 export default Text

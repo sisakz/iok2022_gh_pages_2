@@ -8,8 +8,9 @@ import Section from "../../components/Section/Section";
 import WelcomeImage from "../../assets/img/welcome-img.png";
 import WelcomeImageMobile from "../../assets/img/welcome-img-mobile.png";
 import "./Welcome.scss";
-import Fade from "react-reveal/Fade";
-import { StructuredText  } from "react-datocms";
+import Fade from "react-reveal/Fade"
+import { StructuredText  } from "react-datocms"
+import { useStaticElement } from '../../tools/datoCmsTools'
 
 const Overview = (props) => {
     return (
@@ -46,10 +47,10 @@ const calculateCountdown = (target) => {
     return { days, hours, minutes };
 };
 
-const Welcome = (props) => {
+const Welcome = () => {
     const target = useMemo(() => new Date("2022-03-19 09:00:00"), []);
     const [countdown, setCountdown] = useState({});
-	const {welcomeText} = props
+	const [welcomeText] = useStaticElement("welcome")
     useEffect(() => {
         setCountdown(calculateCountdown(target));
         const interval = window.setInterval(() => {

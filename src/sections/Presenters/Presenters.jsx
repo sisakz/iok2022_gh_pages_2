@@ -7,6 +7,7 @@ import Button from "../../components/Button/Button";
 import { useState } from "react";
 import Arrow from "../../icons/Arrow"
 import { StructuredText  } from "react-datocms"
+import { useStaticElement, useAllElements } from '../../tools/datoCmsTools'
 
 const Presenter = (props) => {
     return (
@@ -75,7 +76,8 @@ const AllPresenters = (props) => {
 }
 
 const Presenters = (props) => {
-	const { presenterText, allPresenters } = props
+	const [presenterText] = useStaticElement("speaker") 
+	const [allPresenters] = useAllElements("presenters")
 	const [showAll, setShowAll] = useState(false)
 
     return (

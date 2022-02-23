@@ -12,13 +12,18 @@ import { useContext } from "react"
 import Modal from 'react-bootstrap/Modal'
 import Alert from "react-bootstrap/Alert"
 import Spinner from "react-bootstrap/Spinner"
+import { useStaticElement, useAllElements } from '../../tools/datoCmsTools'
 
 
 const Registration = (props) => {
 
 	const context = useContext(AppContext)
+	const [allStages] = useAllElements("stages")
+	const [registrationText] = useStaticElement("registration") 
+	const [registrationFormatText] = useStaticElement("registrationFormat") 
+	const [registrationSuccessText] = useStaticElement("registrationSuccess") 
+	const [registrationFormatCheckboxText] = useStaticElement("registrationFormatCheckbox", false) 	
 
-	const { registrationFormatText, registrationFormatCheckboxText, registrationSuccessText, allStages} = props
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')

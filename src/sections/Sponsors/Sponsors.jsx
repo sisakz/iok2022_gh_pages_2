@@ -6,15 +6,18 @@ import telekomLogo from "../../assets/img/sponsors/Telekom.png"
 import microsoftLogo from "../../assets/img/sponsors/ms-logo_HU.png"
 import ciscoLogo from "../../assets/img/sponsors/cisco.png"
 import pannonLogo from "../../assets/img/sponsors/pannon-mik.png"
+import { useStaticElement } from '../../tools/datoCmsTools'
+import { StructuredText  } from "react-datocms"
 
 const Sponsor = (props) => {
 	return <a href={props.link} target="_blank" rel="noopener noreferrer" className="sponsor"><img src={props.image} alt={props.name} /></a>
 }
 
 const Sponsors = () => {
+	const [sponsorText] = useStaticElement("sponsor") 
 	return <Section container placeholder id="tamogatok">
 		<Title>Az IOK 2022 <span className="highlight">TÁMOGATÓI</span></Title>
-		<Text subtitle>A mostani rendezvényünk sem jöhetett volna létre az informatika oktatás iránt elkötelezett partnereink együttműködése és támogatása nélkül.</Text>
+		<Text description><StructuredText data={sponsorText}></StructuredText></Text>
 		<h3>A rendezvény fő támogatói</h3>
 		<div className="sponsor-grid main-sponsors">
 			<Sponsor image={microsoftLogo} link="https://microsoft.hu" />
