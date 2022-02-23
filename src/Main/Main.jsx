@@ -46,9 +46,17 @@ query AppQuery {
 		}		
 		registration {
 			value
-		}		
+		}
+		registrationFormat {
+			value
+		}
+		registrationFormatCheckbox
+		registrationSuccess {
+			value
+		}
 	}
 	allStages(orderBy: [order_ASC]) {
+		id
 		name
 		schedule {
 			id
@@ -82,6 +90,9 @@ const Main = () => {
 	const mapText2 = data?.staticelement.map2.value
 	const sponsorText = data?.staticelement.sponsor.value
 	const registrationText = data?.staticelement.registration.value 
+	const registrationFormatText = data?.staticelement.registrationFormat.value 
+	const registrationSuccessText = data?.staticelement.registrationSuccess.value
+	const registrationFormatCheckboxText = data?.staticelement.registrationFormatCheckbox
 	const allPresenters = data?.allSpeakers
 	const allStages = data?.allStages
 
@@ -93,7 +104,7 @@ const Main = () => {
 		<Schedule allStages={allStages} />
 		<Map mapText1={mapText1} mapText2={mapText2}/>
 		<Sponsors sponsorText={sponsorText}/>
-		<Registration resistrationText={registrationText}/>
+		<Registration resistrationText={registrationText} registrationFormatText={registrationFormatText} registrationFormatCheckboxText={registrationFormatCheckboxText} registrationSuccessText={registrationSuccessText} allStages={allStages}/>
  	</main>
 }
 
