@@ -74,7 +74,7 @@ const Registration = (props) => {
 		<Title>Biztosítsd már most a <span className="highlight text-uppercase">helyed</span>!</Title>
 		<Text subtitle>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt amet illum veritatis facilis asperiores. Facere, a enim. Earum suscipit totam quod quis maxime non alias!</Text>
 		<form className="reg-form" onSubmit={onSubmit}>
-			<Title subtitle>Add meg az adataidat</Title>
+			<Title subtitle>Add meg az adataidat --</Title>
 
 			
 			<label className="form-label" for="name-field">Név*</label>
