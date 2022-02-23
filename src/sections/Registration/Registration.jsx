@@ -29,6 +29,8 @@ const Registration = (props) => {
 	const [success, setSuccess] = useState(false)
 	const [error, setError] = useState(false)
 
+	const vipCode = (new URLSearchParams(window.location.search)).get('q') || null
+
 	const onSubmit = async (e) => {
 		e.preventDefault()
 		setLoading(true)
@@ -48,7 +50,8 @@ const Registration = (props) => {
 				name,
 				email,
 				onsite,
-				stage
+				stage,
+				vipCode
 			})
 			setSuccess(true)
 			setError(false)
@@ -56,10 +59,20 @@ const Registration = (props) => {
 			setName('')
 			setOnsite(false)
 			setStage(null)
+			if (vipCode) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash)
 		} catch (error) {
 			console.log(error)
-			if (error.statusCode === 422 && error.message.includes('VALIDATION_UNIQUE')) {
-				setError("email")
+			if (error.statusCode === 422) {
+				if (error.message.includes('VALIDATION_UNIQUE')) {
+					if (error.message.includes("email")) setError("email")
+					else if (error.message.includes("vip_code")) setError("vip")
+					else setError("other")
+				} else if (error.message.includes("INVALID_FIELD")) {
+					if (error.message.includes("vip_code")) setError("vip")
+					else setError("other")
+				} else {
+					setError("other")
+				}
 			} else {
 				setError("other")
 			}
@@ -74,7 +87,11 @@ const Registration = (props) => {
 		<Title>Biztosítsd már most a <span className="highlight text-uppercase">helyed</span>!</Title>
 		<Text subtitle>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt amet illum veritatis facilis asperiores. Facere, a enim. Earum suscipit totam quod quis maxime non alias!</Text>
 		<form className="reg-form" onSubmit={onSubmit}>
-			<Title subtitle>Add meg az adataidat --</Title>
+			<Title subtitle>Add meg az adataidat</Title>
+
+			<Alert variant="success" show={vipCode && error !== "vip"}>
+				VIP regisztrációs kód aktiválva
+			</Alert>
 
 			
 			<label className="form-label" for="name-field">Név*</label>
@@ -109,6 +126,10 @@ const Registration = (props) => {
 
 			<Alert variant="danger" show={error === "other"}>
 				Ismeretlen hiba történt a jelentkezés során. Kérlek, próbáld újra később.
+			</Alert>
+			
+			<Alert variant="danger" show={error === "vip"}>
+				Érvénytelen VIP regisztrációs kód.
 			</Alert>
 
 			<Button submit>
