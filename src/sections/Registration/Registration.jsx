@@ -27,8 +27,12 @@ const Registration = (props) => {
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
+	const [workplace, setWorkplace] = useState('')
+	const [phone, setPhone] = useState('')
+	const [city, setCity] = useState('')
+	const [newsletter, setNewsletter] = useState(false)
 	const [onsite, setOnsite] = useState(false)
-	const [stage, setStage] = useState(null)
+	const [stage, setStage] = useState("")
 
 	const [loading, setLoading] = useState(false)
 	const [success, setSuccess] = useState(false)
@@ -43,17 +47,14 @@ const Registration = (props) => {
 		setSuccess(false)
 		const client = new SiteClient(context.apiKey)
 		try {
-			console.log(allStages, {
-				itemType: '1843571',
-				name,
-				email,
-				onsite,
-				stage
-			})
 			await client.items.create({
 				itemType: '1843571',
 				name,
 				email,
+				workplace,
+				phone,
+				city,
+				newsletter,
 				onsite,
 				stage,
 				vipCode
@@ -62,6 +63,10 @@ const Registration = (props) => {
 			setError(false)
 			setEmail('')
 			setName('')
+			setWorkplace('')
+			setPhone('')
+			setCity('')
+			setNewsletter(false)
 			setOnsite(false)
 			setStage(null)
 			if (vipCode) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash)
@@ -90,7 +95,9 @@ const Registration = (props) => {
 
 	return <Section id="regisztracio" container placeholder>
 		<Title>Biztosítsd már most a <span className="highlight text-uppercase">helyed</span>!</Title>
-		<Text subtitle>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt amet illum veritatis facilis asperiores. Facere, a enim. Earum suscipit totam quod quis maxime non alias!</Text>
+		<Text subtitle>
+			<StructuredText content={registrationText} />
+		</Text>
 		<form className="reg-form" onSubmit={onSubmit}>
 			<Title subtitle>Add meg az adataidat</Title>
 
@@ -99,21 +106,37 @@ const Registration = (props) => {
 			</Alert>
 
 			
-			<label className="form-label" for="name-field">Név*</label>
+			<label className="form-label" htmlFor="name-field">Név*</label>
 			<input id="name-field" className="form-control" value={name} onChange={e => setName(e.target.value)} autoComplete="name" required/>
 
-			<label className="form-label" for="email-field">E-mail cím*</label>
+			<label className="form-label" htmlFor="email-field">E-mail cím*</label>
 			<input id="email-field" className="form-control" value={email} onChange={e => setEmail(e.target.value)} autoComplete="email" required/>
 
 			<Alert variant="danger" show={error === "email"}>
 				Ez az e-mail cím már foglalt.
 			</Alert>
 
+			<label className="form-label" htmlFor="phone-field">Telefonszám*</label>
+			<input id="phone-field" className="form-control" value={phone} onChange={e => setPhone(e.target.value)} autoComplete="tel" required/>
+
+			<label className="form-label" htmlFor="workplace-field">Munkahely*</label>
+			<input id="workplace-field" className="form-control" value={workplace} onChange={e => setWorkplace(e.target.value)} autoComplete="organization" required/>
+
+			<label className="form-label" htmlFor="city-field">Település*</label>
+			<input id="city-field" className="form-control" value={city} onChange={e => setCity(e.target.value)} autoComplete="address-level2" required/>
+
+			<div className="form-check mb-4 mt-4">
+				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
+				<label className="form-check-label" htmlFor="newsletter-field">
+					Szeretnék emailben értesülni az InfoTanár Mentor programmal kapcsolatos információkról
+				</label>
+			</div>
+
 			<label className="form-label">Miyen módon szeretnél részt venni a konferencián?*</label>
 			<StructuredText data={registrationFormatText} />
 			<div className="form-check">
 				<input className="form-check-input" type="checkbox" name="online" id="onsite-field" checked={onsite} onChange={e => setOnsite(e.target.checked)}/>
-				<label className="form-check-label" for="onsite-field">
+				<label className="form-check-label" htmlFor="onsite-field">
 					{registrationFormatCheckboxText}
 				</label>
 			</div>
@@ -121,8 +144,8 @@ const Registration = (props) => {
 				<>
 					<label className="form-label  mt-4">Melyik délutáni szekción szeretnél részt venni?*</label>
 					<select className="form-select" required={onsite} value={stage} onChange={e => setStage(e.target.value)}>
-						<option value={null} hidden selected></option>
-						{ allStages?.slice(1).map(stage => <option value={stage.id}>{stage.name}</option>) }
+						<option value={""} hidden></option>
+						{ allStages?.slice(1).map((stage, index) => <option key={index} value={stage.id}>{stage.name}</option>) }
 					</select>
 				</>
 			}

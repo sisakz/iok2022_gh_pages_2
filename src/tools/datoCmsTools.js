@@ -17,7 +17,7 @@ export const useStaticElement = (staticTextField, isStructuredText = true) => {
         token,
     });
 
-    data ?? console.log(staticTextField, data?.staticelement[staticTextField]);
+    //data ?? console.log(staticTextField, data?.staticelement[staticTextField]);
     return [
         data?.staticelement[staticTextField].value ??
             data?.staticelement[staticTextField],
