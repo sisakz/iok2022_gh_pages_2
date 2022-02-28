@@ -25,19 +25,38 @@ export const useStaticElement = (staticTextField, isStructuredText = true) => {
 };
 
 export const useAllElements = (model) => {
+    const modelQueryRecordCount = {
+        presenters: `        
+            _allSpeakersMeta {
+              count
+            }
+        `,
+        stages: `
+            _allStagesMeta {
+                count
+            }
+        `
+    }
+    const DATOCMS_QUERY_RECORD_COUNT = `
+        query AppQuery {
+            ${modelQueryRecordCount[model]} 
+        }`
+
+    const  [dataCount] = useQuery(DATOCMS_QUERY_RECORD_COUNT)
+
     const modelQuery = {
         presenters: `
-            allSpeakers(
-                orderBy: [name_ASC]) {
+            allSpeakers(orderBy: [name_ASC], first: ${dataCount?.count ?? 0} ) 
+                {
                     name
-                slug
-                highlighted
-                title
-                company
-                image {
-                    url
+                    slug
+                    highlighted
+                    title
+                    company
+                    image {
+                        url
+                    }
                 }
-            }
         `,
         stages: `
             allStages(orderBy: [order_ASC]) {
@@ -64,10 +83,18 @@ export const useAllElements = (model) => {
         query AppQuery {
             ${modelQuery[model]} 
         }`
+
+    const  [data] = useQuery(DATOCMS_QUERY)
+
+    console.log("dataCount", dataCount)
+    console.log("DATOCMS_QUERY", DATOCMS_QUERY)
+    return [data]
+};
+
+const useQuery = (query) => {
     const { error, data } = useQuerySubscription({
-        enabled: true,
-        query: DATOCMS_QUERY,
-        token,
+        query,
+        token
     });
     return [(data) && data[Object.keys(data)[0]]]
-};
+} 
