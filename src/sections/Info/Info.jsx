@@ -22,13 +22,13 @@ const Info = () => {
 				<div className='col-md-6 col-12'>
 					<div className='bubbles'>
 						<Bubble icon color='primary' size='extra-large' title={<LightBulb />} subtitle="Inspiráció" corners={['bottom-right']} />
-						<Bubble icon color='light' size="large" title={<Networking />} subtitle="Hálózat" corners={['bottom-left']} />
-						<Bubble icon color='light' size="large" title={<Star />} subtitle="Eredmény" corners={['top-right']} />
-						<Bubble icon color='light' size="large" title={<Tools />} subtitle="Tudás" corners={['top-left']} />
+						<Bubble icon color='light' size="large" title={<Networking />} subtitle="Közösségi kapcsolatok" corners={['bottom-left']} />
+						<Bubble icon color='light' size="large" title={<Star />} subtitle="Versenyképes oktatás" corners={['top-right']} />
+						<Bubble icon color='light' size="large" title={<Tools />} subtitle="Piacképes tudás" corners={['top-left']} />
 					</div>
 				</div>
 				<div className='col-md-6 col-12'>
-					<Title subtitle>Töltődj fel a legfrisebb információkkal</Title>
+					<Title subtitle>Töltődj fel a legfrisebb információkkal!</Title>
 					<Text>
 						<StructuredText data={infoText2}/>
 					</Text>

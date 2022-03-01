@@ -92,14 +92,14 @@ const Registration = (props) => {
 
 	}
 
-
+ console.log("registrationText", registrationText)
 	return <Section id="regisztracio" container placeholder>
 		<Title>Biztosítsd már most a <span className="highlight text-uppercase">helyed</span>!</Title>
 		<Text subtitle>
-			<StructuredText content={registrationText} />
+			<StructuredText data={registrationText} />	
 		</Text>
 		<form className="reg-form" onSubmit={onSubmit}>
-			<Title subtitle>Add meg az adataidat</Title>
+			<Title subtitle>Add meg az adataidat!</Title>
 
 			<Alert variant="success" show={vipCode && error !== "vip"}>
 				VIP regisztrációs kód aktiválva
@@ -125,14 +125,7 @@ const Registration = (props) => {
 			<label className="form-label" htmlFor="city-field">Település*</label>
 			<input id="city-field" className="form-control" value={city} onChange={e => setCity(e.target.value)} autoComplete="address-level2" required/>
 
-			<div className="form-check mb-4 mt-4">
-				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
-				<label className="form-check-label" htmlFor="newsletter-field">
-					Szeretnék emailben értesülni az InfoTanár Mentor programmal kapcsolatos információkról
-				</label>
-			</div>
-
-			<label className="form-label">Miyen módon szeretnél részt venni a konferencián?*</label>
+			<label className="form-label">Jelentkezés személyes részvételre</label>
 			<StructuredText data={registrationFormatText} />
 			<div className="form-check">
 				<input className="form-check-input" type="checkbox" name="online" id="onsite-field" checked={onsite} onChange={e => setOnsite(e.target.checked)}/>
@@ -149,7 +142,18 @@ const Registration = (props) => {
 					</select>
 				</>
 			}
-
+			<div className="form-check mb-4 mt-4">
+				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
+				<label className="form-check-label" htmlFor="newsletter-field">
+					Szeretnék emailben értesülni az InfoTanár Mentor programmal kapcsolatos információkról
+				</label>
+			</div>
+			<div className="form-check mb-4 mt-4">
+				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
+				<label className="form-check-label" htmlFor="newsletter-field">
+					Elfogadom az adatkezelési tájékoztatót.*
+				</label>
+			</div>			
 			<div className="my-4"/>
 
 			<Alert variant="danger" show={error === "other"}>

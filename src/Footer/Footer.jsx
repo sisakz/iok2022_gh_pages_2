@@ -18,7 +18,9 @@ const Footer = () => {
 				</div>
 			</div>
 			<div className='copyright'>
+				&copy; HTTP Alapítvány<br />
 				Minden jog fenntartva
+				
 			</div>
 		</div>
 	</footer>

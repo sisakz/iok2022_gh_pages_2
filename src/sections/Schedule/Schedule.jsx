@@ -6,6 +6,8 @@ import Clock from "../../icons/Clock";
 import Coffee from "../../icons/Coffee";
 import "./Schedule.scss";
 import { useAllElements } from '../../tools/datoCmsTools'
+import { StructuredText  } from "react-datocms"
+import { useStaticElement } from '../../tools/datoCmsTools'
 
 /* Egy napirendi pont komponense */
 const ScheduleItem = (props) => {
@@ -42,10 +44,7 @@ const ScheduleItem = (props) => {
                     >{`${presenter.name}, ${presenter.title}, ${presenter.company}`}</div>
                 ))}
                 <div className="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Rerum repellendus eos voluptas cupiditate quasi labore et
-                    velit asperiores minus recusandae a dignissimos, quis natus
-                    numquam cumque quod dicta placeat incidunt.
+                    {""}
                 </div>
             </div>
         </div>
@@ -228,6 +227,7 @@ const BreakoutSessionsSchedule = (props) => {
 const Schedule = (props) => {
     const [allStages] = useAllElements("stages")
     const [openedScheduleItem, setOpenedScheduleItem] = useState(null);
+    const [scheduleText] = useStaticElement("talk") 
     
     return (
         <Section container placeholder id="program">
@@ -235,8 +235,7 @@ const Schedule = (props) => {
                 Konferencia <span className="highlight">PROGRAM</span>
             </Title>
             <Text subtitle>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem at
-                repudiandae assumenda.
+                <StructuredText data={scheduleText}/>
             </Text>
             {allStages && (
 				<>

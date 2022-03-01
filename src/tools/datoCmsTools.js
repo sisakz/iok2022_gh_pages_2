@@ -18,6 +18,7 @@ export const useStaticElement = (staticTextField, isStructuredText = true) => {
     });
 
     //data ?? console.log(staticTextField, data?.staticelement[staticTextField]);
+    //console.log(staticTextField, data?.staticelement[staticTextField])
     return [
         data?.staticelement[staticTextField].value ??
             data?.staticelement[staticTextField],
@@ -86,8 +87,8 @@ export const useAllElements = (model) => {
 
     const  [data] = useQuery(DATOCMS_QUERY)
 
-    console.log("dataCount", dataCount)
-    console.log("DATOCMS_QUERY", DATOCMS_QUERY)
+    //console.log("dataCount", dataCount)
+    //console.log("DATOCMS_QUERY", DATOCMS_QUERY)
     return [data]
 };
 
