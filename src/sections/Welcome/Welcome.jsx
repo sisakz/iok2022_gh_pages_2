@@ -48,7 +48,7 @@ const calculateCountdown = (target) => {
 };
 
 const Welcome = () => {
-    const target = useMemo(() => new Date("2022-03-19 09:00:00"), []);
+    const target = useMemo(() => new Date("2022-03-19T09:00:00"), []);
     const [countdown, setCountdown] = useState({});
 	const [welcomeText] = useStaticElement("welcome")
     useEffect(() => {
