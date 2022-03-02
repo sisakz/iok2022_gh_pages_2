@@ -182,7 +182,7 @@ const BreakoutSessionsSchedule = (props) => {
                 {breakoutSessionStages?.map((stage, sIndex) => {
                     return (
                         <div className="sessions" key={sIndex} >
-                            <h4>"{stage.name}" szekció</h4>
+                            <h4>"{stage.name}" szekció {stage.online && <b>(Online)</b>}</h4>
                             {stage?.schedule.map((presentation, index) => {
                                 if (presentation.speaker.length)
                                     return (
