@@ -67,6 +67,7 @@ export const useAllElements = (model) => {
                     id
                     start
                     title
+                    description
                     speaker {
                         id
                         company

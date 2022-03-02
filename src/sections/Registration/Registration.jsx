@@ -92,7 +92,6 @@ const Registration = (props) => {
 
 	}
 
- console.log("registrationText", registrationText)
 	return <Section id="regisztracio" container placeholder>
 		<Title>Biztosítsd már most a <span className="highlight text-uppercase">helyed</span>!</Title>
 		<Text subtitle>
