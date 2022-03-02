@@ -56,8 +56,8 @@ const Registration = (props) => {
 				city,
 				newsletter,
 				onsite,
-				stage,
-				vipCode
+				stage: stage || null,
+				vipCode: vipCode || null
 			})
 			setSuccess(true)
 			setError(false)
@@ -92,7 +92,6 @@ const Registration = (props) => {
 
 	}
 
- console.log("registrationText", registrationText)
 	return <Section id="regisztracio" container placeholder>
 		<Title>Biztosítsd már most a <span className="highlight text-uppercase">helyed</span>!</Title>
 		<Text subtitle>
@@ -110,8 +109,7 @@ const Registration = (props) => {
 			<input id="name-field" className="form-control" value={name} onChange={e => setName(e.target.value)} autoComplete="name" required/>
 
 			<label className="form-label" htmlFor="email-field">E-mail cím*</label>
-			<input id="email-field" className="form-control" value={email} onChange={e => setEmail(e.target.value)} autoComplete="email" required/>
-
+			<input id="email-field" className={`form-control ${error === "email" ? 'is-invalid' : ''}`} value={email} onChange={e => setEmail(e.target.value)} autoComplete="email" required/>
 			<Alert variant="danger" show={error === "email"}>
 				Ez az e-mail cím már foglalt.
 			</Alert>
@@ -126,22 +124,24 @@ const Registration = (props) => {
 			<input id="city-field" className="form-control" value={city} onChange={e => setCity(e.target.value)} autoComplete="address-level2" required/>
 
 			<label className="form-label">Jelentkezés személyes részvételre</label>
-			<StructuredText data={registrationFormatText} />
-			<div className="form-check">
-				<input className="form-check-input" type="checkbox" name="online" id="onsite-field" checked={onsite} onChange={e => setOnsite(e.target.checked)}/>
-				<label className="form-check-label" htmlFor="onsite-field">
-					{registrationFormatCheckboxText}
-				</label>
+			<div className="" style={{padding: '0.8rem', border: '1px solid #ced4da', borderRadius: '0.25rem'}}>
+				<StructuredText data={registrationFormatText} />
+				<div className="form-check">
+					<input className="form-check-input" type="checkbox" name="online" id="onsite-field" checked={onsite} onChange={e => setOnsite(e.target.checked)}/>
+					<label className="form-check-label" htmlFor="onsite-field">
+						{registrationFormatCheckboxText}
+					</label>
+				</div>
+				{ onsite && 
+					<>
+						<label className="form-label  mt-4">Melyik délutáni szekción szeretnél részt venni?*</label>
+						<select className="form-select" required={onsite} value={stage} onChange={e => setStage(e.target.value)}>
+							<option value={""} hidden></option>
+							{ allStages?.slice(1).map((stage, index) => <option key={index} value={stage.id}>{stage.name}</option>) }
+						</select>
+					</>
+				}
 			</div>
-			{ onsite && 
-				<>
-					<label className="form-label  mt-4">Melyik délutáni szekción szeretnél részt venni?*</label>
-					<select className="form-select" required={onsite} value={stage} onChange={e => setStage(e.target.value)}>
-						<option value={""} hidden></option>
-						{ allStages?.slice(1).map((stage, index) => <option key={index} value={stage.id}>{stage.name}</option>) }
-					</select>
-				</>
-			}
 			<div className="form-check mb-4 mt-4">
 				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
 				<label className="form-check-label" htmlFor="newsletter-field">
@@ -149,9 +149,9 @@ const Registration = (props) => {
 				</label>
 			</div>
 			<div className="form-check mb-4 mt-4">
-				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
-				<label className="form-check-label" htmlFor="newsletter-field">
-					Elfogadom az adatkezelési tájékoztatót.*
+				<input className="form-check-input" type="checkbox" id="toc-field" required />
+				<label className="form-check-label" htmlFor="toc-field">
+					Elolvastam és elfogadom az <a href="/adatkezelesi_tajekoztato_IOK2022.pdf" target="_blank" className="link">Adatkezelési Tájékoztató</a>ban foglaltakat.*
 				</label>
 			</div>			
 			<div className="my-4"/>
@@ -162,6 +162,10 @@ const Registration = (props) => {
 			
 			<Alert variant="danger" show={error === "vip"}>
 				Érvénytelen VIP regisztrációs kód.
+			</Alert>
+
+			<Alert variant="danger" show={error === "email"}>
+				A megadott e-mail cím már foglalt.
 			</Alert>
 
 			<Button submit>

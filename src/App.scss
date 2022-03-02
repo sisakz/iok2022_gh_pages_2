@@ -15,3 +15,13 @@ hr {
 	height: 1px !important;
 	opacity: 1;
 }
+
+a.link {
+	color: $primary;
+	transition: 0.1s ease-out;
+	text-decoration: none;
+	&:hover {
+		color: adjust-color($color: $primary, $lightness: -15%);
+		text-decoration: underline;
+	}
+}

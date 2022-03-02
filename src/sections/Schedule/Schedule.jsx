@@ -44,7 +44,7 @@ const ScheduleItem = (props) => {
                     >{`${presenter.name}, ${presenter.title}, ${presenter.company}`}</div>
                 ))}
                 <div className="description">
-                    {""}
+                    {props.description}
                 </div>
             </div>
         </div>
@@ -74,6 +74,7 @@ const PlenarySessionSchedule = (props) => {
                     title={presentation.title}
                     time={presentation.start.substring(11, 16)}
                     presenters={presentation.speaker}
+                    description={presentation.description}
                     key={index}
                     open={openedScheduleItem === presentation.id}
                     onClick={() =>
@@ -181,7 +182,7 @@ const BreakoutSessionsSchedule = (props) => {
                 {breakoutSessionStages?.map((stage, sIndex) => {
                     return (
                         <div className="sessions" key={sIndex} >
-                            <h4>"{stage.name}" szekció</h4>
+                            <h4>"{stage.name}" szekció {stage.online && <b>(Online)</b>}</h4>
                             {stage?.schedule.map((presentation, index) => {
                                 if (presentation.speaker.length)
                                     return (
@@ -191,6 +192,7 @@ const BreakoutSessionsSchedule = (props) => {
                                                 11,
                                                 16
                                             )}
+                                            description={presentation.description}
                                             presenters={presentation.speaker}
                                             key={index}
                                             open={

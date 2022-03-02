@@ -63,10 +63,12 @@ export const useAllElements = (model) => {
             allStages(orderBy: [order_ASC]) {
                 id
                 name
+                online
                 schedule {
                     id
                     start
                     title
+                    description
                     speaker {
                         id
                         company
