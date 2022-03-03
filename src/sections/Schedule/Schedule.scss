@@ -80,6 +80,8 @@
 			overflow: hidden;
 			font-size: 0.9rem;
 			max-height: 0;
+			color: rgba(0, 0, 0, 0.6);
+
 			@include mobile {
 				width: calc(100% + 70px);
 				transform: translateX(-80px);
@@ -134,7 +136,7 @@
 				}
 
 				.description {
-					max-height: 100px;
+					max-height: 2000px;
 					padding: 15px 0 0 0;
 				}
 			}
@@ -142,7 +144,7 @@
 				background-color: rgba(255, 255, 255, 0.8);
 				padding-bottom: 15px;
 				.description {
-					max-height: 200px;
+					max-height: 2000px;
 				}
 				.presenter {
 					margin-bottom: 20px;
