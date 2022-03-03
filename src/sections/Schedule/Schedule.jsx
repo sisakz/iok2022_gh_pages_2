@@ -36,13 +36,13 @@ const ScheduleItem = (props) => {
             onClick={props.onClick}
         >
             <div className="images">
-                {props.presenters?.map((presenter) => (
+                {props.presenters?.map((presenter, index) => (
                     <div
                         key={presenter.id}
                         className="image"
                         style={{
-                            backgroundImage:
-                                "url('" + presenter.image.url + "')",
+                            backgroundImage: "url('" + presenter.image.url + "')",
+                            transform: `translateY(${index * -7}px)`,
                         }}
                     ></div>
                 ))}
