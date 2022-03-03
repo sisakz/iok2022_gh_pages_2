@@ -38,6 +38,10 @@
 				animation: card-animation 0.5s ease-in-out;
 				animation-fill-mode: forwards;
 				justify-self: normal !important;
+				.presenter-wrapper {
+					display: flex;
+					flex-direction: column;
+				}
 				.presenter-img {
 					width: 100%;
 					height: auto;
@@ -61,6 +65,7 @@
 					*/
 				}
 				.presenter-name-mobile {
+					flex: 1;
 					box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 					display: block;
 					position: relative;
