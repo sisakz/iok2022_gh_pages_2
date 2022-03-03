@@ -2,8 +2,8 @@
 #tamogatok {
 	.sponsor-grid {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		grid-template-rows: repeat(2, 1fr);
+/* 		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(2, 1fr); */
 		column-gap: 10%;
 		row-gap: 60px;
 		max-width: 1100px;
@@ -43,7 +43,13 @@
 		}
 		&.partner-sponsors {
 			height: 130px;
+/* 			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(2, 1fr); */
+			.elte-tok {
+				height: 180px !important;
+			}
 		}
+
 	}
 
 	h3 {

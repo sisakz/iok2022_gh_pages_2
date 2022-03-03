@@ -6,11 +6,18 @@ import telekomLogo from "../../assets/img/sponsors/Telekom.png"
 import microsoftLogo from "../../assets/img/sponsors/ms-logo_HU.png"
 import ciscoLogo from "../../assets/img/sponsors/cisco.png"
 import pannonLogo from "../../assets/img/sponsors/pannon-mik.png"
+import eltetokLogo from "../../assets/img/sponsors/elte-tok.png"
 import { useStaticElement } from '../../tools/datoCmsTools'
 import { StructuredText  } from "react-datocms"
 
 const Sponsor = (props) => {
-	return <a href={props.link} target="_blank" rel="noopener noreferrer" className="sponsor"><img src={props.image} alt={props.name} /></a>
+	return (
+		<div className="sponsor">
+			<a href={props.link} target="_blank" rel="noopener noreferrer"  >
+					<img src={props.image} alt={props.name} {...props}/>
+			</a>
+		</div>
+	)
 }
 
 const Sponsors = () => {
@@ -27,6 +34,7 @@ const Sponsors = () => {
 		<div className="sponsor-grid partner-sponsors">
 			<Sponsor image={ciscoLogo} link="http://cisco.hu" />
 			<Sponsor image={pannonLogo} link="https://mik.uni-pannon.hu/" />
+			{/* <Sponsor image={eltetokLogo} className="elte-tok" link="https://mik.uni-pannon.hu/" /> */}
 		</div>
 		{/* <div className="sponsor-grid">
 			{(Array(8).fill(1)).map((k,i) => <Sponsor key={i} image="/assets/img/sponsors/google.png" />)}

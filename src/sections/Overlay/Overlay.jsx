@@ -20,14 +20,14 @@ const Overlay = () => {
 					<div className='infobox'>
 						<Mic />
 						<div>
-							<div className='title'>24</div>
+							<div className='title'>21</div>
 							<div className='subtitle'>előadás</div>
 						</div>
 					</div>
 					<div className='infobox'>
 						<Person />
 						<div>
-							<div className='title'>26</div>
+							<div className='title'>27</div>
 							<div className='subtitle'>előadó</div>
 						</div>
 					</div>

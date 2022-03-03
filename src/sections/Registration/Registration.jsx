@@ -137,7 +137,7 @@ const Registration = (props) => {
 						<label className="form-label  mt-4">Melyik délutáni szekción szeretnél részt venni?*</label>
 						<select className="form-select" required={onsite} value={stage} onChange={e => setStage(e.target.value)}>
 							<option value={""} hidden></option>
-							{ allStages?.slice(1).map((stage, index) => <option key={index} value={stage.id}>{stage.name}</option>) }
+							{ allStages?.slice(1).slice(0,-1).map((stage, index) => <option key={index} value={stage.id}>{stage.name}</option>) }
 						</select>
 					</>
 				}
