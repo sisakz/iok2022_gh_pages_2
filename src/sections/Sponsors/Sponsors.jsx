@@ -36,11 +36,8 @@ const Sponsors = () => {
 		<div className="sponsor-grid partner-sponsors">
 			<Sponsor image={ciscoLogo} link="http://cisco.hu" />
 			<Sponsor image={pannonLogo} link="https://mik.uni-pannon.hu/" />
-			{/* <Sponsor image={eltetokLogo} className="elte-tok" link="https://mik.uni-pannon.hu/" /> */}
+			<Sponsor image={eltetokLogo} className="elte-tok" link="https://www.tok.elte.hu/" />
 		</div>
-		{/* <div className="sponsor-grid">
-			{(Array(8).fill(1)).map((k,i) => <Sponsor key={i} image="/assets/img/sponsors/google.png" />)}
-		</div> */}
 	</Section>
 }
 

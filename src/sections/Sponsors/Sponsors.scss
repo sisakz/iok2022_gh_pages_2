@@ -30,7 +30,7 @@
 			@include mobile {
 				grid-template-columns: 1fr;
 				column-gap: 20px;
-				row-gap: 30px;
+				row-gap: 50px;
 				.sponsor {
 					padding: 0;
 					text-align: center;
@@ -42,11 +42,29 @@
 			}
 		}
 		&.partner-sponsors {
-			height: 130px;
+			height: 180px;
+			grid-template-columns: repeat(3, 1fr);
+			max-width: 1000px;
+			align-items: center;
+			gap: 0;
+			width: 100%;
+			@media screen and (max-width: 1200px) {
+				grid-template-columns: 1fr;
+				height: auto;
+				row-gap: 50px;
+			}
 /* 			grid-template-columns: repeat(3, 1fr);
 			grid-template-rows: repeat(2, 1fr); */
 			.elte-tok {
 				height: 180px !important;
+			}
+			.sponsor {
+				text-align: center;
+				height: auto;
+				img {
+					width: auto !important;
+				}
+
 			}
 		}
 
