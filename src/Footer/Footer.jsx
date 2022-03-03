@@ -4,6 +4,7 @@ import Location from '../icons/Location'
 import Phone from '../icons/Phone'
 import Mail from '../icons/Mail'
 import Web from '../icons/Web'
+import Text from "../components/Text/Text"
 
 const Footer = () => {
 	return <footer>
@@ -16,12 +17,24 @@ const Footer = () => {
 					<Mail /><div><a href="mailto:info@http-alapitvany.hu">info@http-alapitvany.hu</a></div>
 					<Web /><div><a target="_blank" rel="noopener noreferrer" href="https://http-alapitvany.hu">http-alapitvany.hu</a></div>
 				</div>
+
+
 			</div>
 			<div className='copyright'>
+				<div className="links">
+					<div style={{marginBottom:"1rem"}}>
+						Infotanár Mentor Program<br />
+						<Web /> <a target="_blank" rel="noopener noreferrer" href="https://itmp.hu">itmp.hu</a>
+					</div>
+					<div style={{marginBottom:"1rem"}}>
+						Cisco Hálózati Akadémia<br />
+						<Web /> <a target="_blank" rel="noopener noreferrer" href="https://netacad.hu">netacad.hu</a>
+					</div>
+				</div>
 				&copy; HTTP Alapítvány<br />
 				Minden jog fenntartva
-				
-			</div>
+				</div>
+
 		</div>
 	</footer>
 }

@@ -24,7 +24,9 @@ const Sponsors = () => {
 	const [sponsorText] = useStaticElement("sponsor") 
 	return <Section container placeholder id="tamogatok">
 		<Title>Az IOK 2022 <span className="highlight">TÁMOGATÓI</span></Title>
-		<Text description><StructuredText data={sponsorText}></StructuredText></Text>
+		<Text subtitle>
+			<Text description><StructuredText data={sponsorText}></StructuredText></Text>
+		</Text>
 		<h3>A rendezvény fő támogatói</h3>
 		<div className="sponsor-grid main-sponsors">
 			<Sponsor image={microsoftLogo} link="https://microsoft.hu" />

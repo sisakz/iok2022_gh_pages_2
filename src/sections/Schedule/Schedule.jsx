@@ -10,6 +10,22 @@ import { StructuredText  } from "react-datocms"
 import { useStaticElement } from '../../tools/datoCmsTools'
 
 /* Egy napirendi pont komponense */
+const PreseterImages = (props) => {
+    <div className="images">
+        {props.presenters?.map((presenter) => (
+            <div
+                key={presenter.id}
+                className="image"
+                style={{
+                    backgroundImage:
+                        "url('" + presenter.image.url + "')",
+                }}
+            ></div>
+        ))}
+    </div>
+}
+
+
 const ScheduleItem = (props) => {
     const double = props.presenters?.length > 1;
     return (

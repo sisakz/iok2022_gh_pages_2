@@ -111,7 +111,7 @@ const Registration = (props) => {
 			<label className="form-label" htmlFor="email-field">E-mail cím*</label>
 			<input id="email-field" className={`form-control ${error === "email" ? 'is-invalid' : ''}`} value={email} onChange={e => setEmail(e.target.value)} autoComplete="email" required/>
 			<Alert variant="danger" show={error === "email"}>
-				Ez az e-mail cím már foglalt.
+				Ezzel az e-mail címmel már történt regisztráció.
 			</Alert>
 
 			<label className="form-label" htmlFor="phone-field">Telefonszám*</label>
@@ -165,7 +165,7 @@ const Registration = (props) => {
 			</Alert>
 
 			<Alert variant="danger" show={error === "email"}>
-				A megadott e-mail cím már foglalt.
+				A megadott e-mail címmel már történt regisztráció.
 			</Alert>
 
 			<Button submit>
