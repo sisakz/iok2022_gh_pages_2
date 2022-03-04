@@ -99,6 +99,8 @@ const useQuery = (query) => {
         query,
         token
     });
+
+    //if (error) console.log("error", error, query)
     return [(data) && data[Object.keys(data)[0]]]
 } 
 
