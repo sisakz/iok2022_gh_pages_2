@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>IOK VIP</title>
 	<script crossorigin src="https://unpkg.com/datocms-client@3.5.14/dist/client.js"></script>
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 	<style>
 		* {
 			box-sizing: border-box;
@@ -32,14 +33,18 @@
 <body>
 	<label for="token">Token:</label>
 	<input type="text" id="token" value="" style="width: 300px;" />
-	<button onclick="loadCodes()">Betöltés</button>
+	
 	<br />
+	<button onclick="exportRegistrations()" style="padding: 10px">Regisztrációk exportálása</button>
+	<br />
+	<br />
+	<br />
+	Vip kódok importálása:
 	<input type="file" id="file" />
 	<button onclick="importFile()">Importálás</button>
 	<br />
 	<br />
-	<br />
-
+	<button onclick="loadCodes()">Lista betöltés</button>
 	<table>
 		<thead>
 			<tr>
@@ -57,11 +62,15 @@
 
 	<button onclick="exportCsv()">Exportálás</button>
 	<script>
+		if (window.localStorage.vip_token) {
+			document.getElementById('token').value = window.localStorage.vip_token;
+		}
 		let token = document.getElementById('token').value
 		let client
 		
 		const initClient = () => {
 			token = document.getElementById('token').value
+			if (token) window.localStorage.vip_token = token
 			client = new Dato.SiteClient(token)
 		}
 		let data = []
@@ -194,7 +203,51 @@
 			document.body.removeChild(a)
 		}
 
-		if (token) loadCodes()
+		const exportRegistrations = async () => {
+			initClient()
+			const registrations = await client.items.all({
+				filter: {
+					type: 'registration'
+				},
+				order_by: 'id_ASC'
+			}, {
+					allPages: true
+				}
+			)
+			console.log(registrations)
+			let wb = XLSX.utils.book_new()
+			wb.Props = {
+                Title: "SheetJS Tutorial",
+                CreatedDate: new Date()
+        	}
+			wb.SheetNames.push("Regisztrációk")
+			var ws_data = [
+				["ID", "Név", "Email", "Település", "Telefon", "Munkahely", "Hírlevél", "Onsite", "Du.", "Vip", "Dátum"],
+				...(registrations.map(r => [r.id, r.name, r.email, r.city, r.phone, r.workplace, r.newsletter, r.onsite, r.stage, r.vipCode ?? false, new Date(r.createdAt)]))
+			]
+			console.log(ws_data)
+			var ws = XLSX.utils.aoa_to_sheet(ws_data);
+			wb.Sheets["Regisztrációk"] = ws;
+			var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+
+			const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' })
+			const url = URL.createObjectURL(blob)
+			const a = document.createElement('a')
+			a.href = url
+			a.download = 'IOK2022-Regisztraciok.xlsx'
+			document.body.appendChild(a)
+			a.click()
+			document.body.removeChild(a)
+		}
+
+		function s2ab(s) { 
+			var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+			var view = new Uint8Array(buf);  //create uint8array as viewer
+			for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+			return buf;    
+		}
+
+		//if (token) loadCodes()
 	</script>
 </body>
 </html>
