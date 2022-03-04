@@ -101,3 +101,44 @@ const useQuery = (query) => {
     });
     return [(data) && data[Object.keys(data)[0]]]
 } 
+
+export const useStatQuery = (statType) => {
+    
+    let query=`
+        query onsiteQuery {
+            _allRegistrationsMeta(filter: {onsite: {eq: "true"}}){
+            count
+            }
+        }
+    `
+    const { error: onsiteError, data: onsite } = useQuerySubscription({
+        query,
+        token
+    });
+
+    query=`
+        query onsiteQuery {
+            _allRegistrationsMeta(filter: {onsite: {eq: "false"}}){
+            count
+            }
+        }
+`
+    const { error: onlineError, data: online } = useQuerySubscription({
+        query,
+        token
+    });
+
+    query=`
+    query onsiteQuery {
+        _allRegistrationsMeta {
+        count
+        }
+    }
+`
+    const { error: allError, data: all } = useQuerySubscription({
+        query,
+        token
+    });
+
+    return [onsite, online, all]
+} 
