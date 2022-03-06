@@ -21,6 +21,7 @@ const Registration = (props) => {
 	const [allStages] = useAllElements("stages")
 	const [registrationText] = useStaticElement("registration") 
 	const [registrationFormatText] = useStaticElement("registrationFormat") 
+	const [registrationFormatVipText] = useStaticElement("registrationFormatVip")
 	const [registrationSuccessText] = useStaticElement("registrationSuccess") 
 	const [registrationFormatCheckboxText] = useStaticElement("registrationFormatCheckbox", false) 	
 
@@ -125,7 +126,7 @@ const Registration = (props) => {
 
 			<label className="form-label">Jelentkezés személyes részvételre</label>
 			<div className="" style={{padding: '0.8rem', border: '1px solid #ced4da', borderRadius: '0.25rem'}}>
-				<StructuredText data={registrationFormatText} />
+				<StructuredText data={vipCode ? registrationFormatVipText : registrationFormatText} />
 				<div className="form-check">
 					<input className="form-check-input" type="checkbox" name="online" id="onsite-field" checked={onsite} onChange={e => setOnsite(e.target.checked)}/>
 					<label className="form-check-label" htmlFor="onsite-field">
