@@ -4,9 +4,10 @@ import Title from "../../components/Title/Title"
 import './Sponsors.scss'
 import telekomLogo from "../../assets/img/sponsors/Telekom.png"
 import microsoftLogo from "../../assets/img/sponsors/ms-logo_HU.png"
-import ciscoLogo from "../../assets/img/sponsors/cisco.png"
-import pannonLogo from "../../assets/img/sponsors/pannon-mik.png"
-import eltetokLogo from "../../assets/img/sponsors/elte-tok.png"
+import ciscoLogo from "../../assets/img/sponsors/cisco2.png"
+import pannonLogo from "../../assets/img/sponsors/pannon-mik2.png"
+import eltetokLogo from "../../assets/img/sponsors/elte-tok2.png"
+import netAcadLogo from "../../assets/img/sponsors/netacad2.png"
 import { useStaticElement } from '../../tools/datoCmsTools'
 import { StructuredText  } from "react-datocms"
 
@@ -37,6 +38,8 @@ const Sponsors = () => {
 			<Sponsor image={ciscoLogo} link="http://cisco.hu" />
 			<Sponsor image={pannonLogo} link="https://mik.uni-pannon.hu/" />
 			<Sponsor image={eltetokLogo} className="elte-tok" link="https://www.tok.elte.hu/" />
+			<Sponsor image={netAcadLogo} className="elte-tok" link="https://netacad.com/" />
+			
 		</div>
 	</Section>
 }
