@@ -56,7 +56,7 @@ const Registration = (props) => {
 				phone,
 				city,
 				newsletter,
-				onsite,
+				onsite: false,
 				stage: stage || null,
 				vipCode: vipCode || null
 			})
@@ -124,7 +124,7 @@ const Registration = (props) => {
 			<label className="form-label" htmlFor="city-field">Település*</label>
 			<input id="city-field" className="form-control" value={city} onChange={e => setCity(e.target.value)} autoComplete="address-level2" required/>
 
-			<label className="form-label">Jelentkezés személyes részvételre</label>
+			{/* <label className="form-label">Jelentkezés személyes részvételre</label>
 			<div className="" style={{padding: '0.8rem', border: '1px solid #ced4da', borderRadius: '0.25rem'}}>
 				<StructuredText data={vipCode ? registrationFormatVipText : registrationFormatText} />
 				<div className="form-check">
@@ -142,7 +142,7 @@ const Registration = (props) => {
 						</select>
 					</>
 				}
-			</div>
+			</div> */}
 			<div className="form-check mb-4 mt-4">
 				<input className="form-check-input" type="checkbox" name="newsletter" id="newsletter-field" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
 				<label className="form-check-label" htmlFor="newsletter-field">
