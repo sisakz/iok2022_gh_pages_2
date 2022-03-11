@@ -6,6 +6,7 @@ import Registration from '../sections/Registration/Registration'
 import Schedule from '../sections/Schedule/Schedule.jsx'
 import Sponsors from '../sections/Sponsors/Sponsors'
 import Welcome from '../sections/Welcome/Welcome'
+import RegistrationFeedback from '../components/RegistrationFeedback'
 import './Main.scss'
 
 const Main = () => {
@@ -13,6 +14,7 @@ const Main = () => {
 		<main>
 			<Welcome />
 			<Overlay />
+			<RegistrationFeedback />
 			<Info />
 			<Presenters />
 			<Schedule />
